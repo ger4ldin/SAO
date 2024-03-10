@@ -10,7 +10,6 @@ $respuesta = mysqli_query($con, $entrar);
 if (!$respuesta) {
     die("error al iniciar sesión");
 } else {
-    echo "Inicio de sesión exitoso";
     echo "<script>window.location.href='https://geraldinarenash.000webhostapp.com/SAO/html/index.html'</script>";
     exit;
 }

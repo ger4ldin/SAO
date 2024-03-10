@@ -11,5 +11,5 @@ $insertar = "INSERT INTO usuarios (nombre, apellidopaterno, apellidomaterno, cor
     VALUES ('$nombre', '$apeP', '$apeM', '$correo', '$contrasena')";
 $respuesta = mysqli_query($con, $insertar);
 if (!$respuesta)  die("error al insertar");
-echo "Se inserto correctamente";
+    echo "<script>window.location.href='https://geraldinarenash.000webhostapp.com/SAO/html/registro.html'</script>";
 ?>

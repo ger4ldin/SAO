@@ -7,15 +7,16 @@
    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"></script>
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+      </script>
 
    <link href="./boostrap/bootstrap.min.css" rel="stylesheet"
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
    <script src="./boostrap/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="../css/style.css">
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+      </script>
+
+   <link rel="stylesheet" href="../src/css/style.css">
    <title>Página Principal</title>
 </head>
 
@@ -23,13 +24,16 @@
    <header class="py-3 border-bottom">
       <div class="container-fluid row align-items-center">
          <div class="dropdown col-12 col-lg-3 col-md-3">
-            <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+            <a href="../html/index.html"
+               class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
                <img src="../assets/logo.png" alt="logo-Sao" class="d-block " width="100" height="40"
                   style="margin: 0 auto;">
             </a>
          </div>
-         <div class="d-grid gap-2 align-items-center col-12 col-lg-9 col-md-9" style="grid-template-columns: 95% 1fr;">
-            <div class="d-flex align-items-center">
+         <!--<div class="d-grid gap-2 align-items-center col-12 col-lg-9 col-md-9" style="grid-template-columns: 95% 1fr;">-->
+
+            <div class="d-flex align-items-center d-grid gap-2 align-items-center col-12 col-lg-9 col-md-9" style="grid-template-columns: 95% 1fr;">
+               <!-- Search -->
                <form class="w-100 me-3" role="search">
                   <div class="input-group ">
                      <span class="input-group-text" id="basic-addon1" style="background-color: #fe6347;color: white;">
@@ -54,7 +58,7 @@
                      </svg>
                   </a>
                   <ul class="dropdown-menu text-small shadow">
-                     <li><a class="dropdown-item mb-2 py-2 " href="#">
+                     <li><a class="dropdown-item mb-2 py-2 " href="../html/cuenta.html">
                            <svg class="fs-3" stroke="currentColor" fill="currentColor" stroke-width="0"
                               viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                               <path
@@ -63,7 +67,7 @@
                            </svg>
                            <span class="container">Mi cuenta</span>
                         </a></li>
-                     <li><a class="dropdown-item mb-2 py-2 " href="#">
+                     <li><a class="dropdown-item mb-2 py-2 " href="../ListaDeseos.html">
                            <svg class="fs-3" stroke="currentColor" fill="currentColor" stroke-width="0"
                               viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                               <path
@@ -72,7 +76,7 @@
                            </svg>
                            <span class="container">Favoritos</span>
                         </a></li>
-                     <li><a class="dropdown-item mb-2 py-2 " href="#">
+                     <li><a class="dropdown-item mb-2 py-2 " href="../html/carritoDeCompra.html">
                            <svg class="fs-3" stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
                               stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em"
                               xmlns="http://www.w3.org/2000/svg">
@@ -87,14 +91,15 @@
                   </ul>
                </div>
             </div>
-         </div>
+
+         <!--</div>-->
       </div>
    </header>
+
    <div class="container-fluid row mb-1 d-flex justify-content-between">
       <div class="cotainer col-6 py-2 shadow-sm row" style="align-items: center;">
          <span class="d-block col-12 col-lg-3 col-md-3 fs-1" style="text-align:center; transform: translateY(-10px);">
-            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round"
-               stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
                <path d="M9 10h6"></path>
             </svg>
@@ -158,26 +163,32 @@
          </div>
       </div>
    </div>
+
    <div class="container-fluid mb-5">
       <h3>Lo mas Vendido</h3>
       <div class="row">
          <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-            <img src="https://www.cityclub.com.mx/dw/image/v2/BGBD_PRD/on/demandware.static/-/Sites-soriana-grocery-master-catalog/default/dw90bf1c04/images/product/010343958104_A.jpg?sw=1000&sh=1000&sm=fit" alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
+            <img src="https://www.cityclub.com.mx/dw/image/v2/BGBD_PRD/on/demandware.static/-/Sites-soriana-grocery-master-catalog/default/dw90bf1c04/images/product/010343958104_A.jpg?sw=1000&sh=1000&sm=fit"
+               alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
             <p class="mb-0">Nombre</p>
             <span style="color: #fe6347;">$ 100.99 MXN</span>
          </div>
          <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-            <img src="https://www.achemex.com/cdn/shop/products/313MxVBi3sL.jpg?v=1682008150" alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
+            <img src="https://www.achemex.com/cdn/shop/products/313MxVBi3sL.jpg?v=1682008150" alt="marca"
+               class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
             <p class="mb-0">Nombre</p>
             <span style="color: #fe6347;">$ 100.99 MXN</span>
          </div>
          <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-            <img src="https://http2.mlstatic.com/D_NQ_NP_651013-MLU72836543473_112023-O.webp" alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
+            <img src="https://http2.mlstatic.com/D_NQ_NP_651013-MLU72836543473_112023-O.webp" alt="marca"
+               class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
             <p class="mb-0">Nombre</p>
             <span style="color: #fe6347;">$ 100.99 MXN</span>
          </div>
          <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-            <img src="https://pcoax.com.mx/14400-large_default/impresora-multifuncional-canon-maxify-gx7010-tinta-continua.jpg" alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
+            <img
+               src="https://pcoax.com.mx/14400-large_default/impresora-multifuncional-canon-maxify-gx7010-tinta-continua.jpg"
+               alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
             <p class="mb-0">Nombre</p>
             <span style="color: #fe6347;">$ 100.99 MXN</span>
          </div>

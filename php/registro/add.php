@@ -7,7 +7,7 @@ $contrasena = $_POST['contrasena'];
 
 include("../conection.php");
 
-$insertar = "INSERT INTO usuarios (nombre, apellidopaterno, apellidomaterno, correoelectronico, contraseña) 
+$insertar = "INSERT INTO user (name, lastnameF, lastnameM, email, password) 
     VALUES ('$nombre', '$apeP', '$apeM', '$correo', '$contrasena')";
 $respuesta = mysqli_query($con, $insertar);
 if (!$respuesta)  die("error al insertar");

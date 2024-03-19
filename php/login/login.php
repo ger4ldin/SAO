@@ -5,7 +5,7 @@ $contrasena = $_POST['contrasena'];
 include("../conection.php");
 // $contrasena = password_hash($contrasena, PASSWORD_DEFAULT);
 
-$entrar = "SELECT correoelectronico, contraseña FROM usuarios WHERE correoelectronico='$correo' AND contraseña='$contrasena'";
+$entrar = "SELECT email, password FROM user WHERE email='$correo' AND password='$contrasena'";
 $respuesta = mysqli_query($con, $entrar);
 if (!$respuesta) {
     die("Error: " . mysqli_error($con));
@@ -15,7 +15,7 @@ if (!$respuesta) {
         exit;
     } else {
         $fila = mysqli_fetch_assoc($respuesta);
-        if ($fila['correoelectronico'] === 'admin@gmail.com' && $contrasena === 'admin1234') {
+        if ($fila['email'] === 'admin@gmail.com' && $contrasena === 'admin1234') {
             echo "<script>window.location.href='http://localhost/SAO/html/indexAdmin.html'</script>";
             exit;
         } else {

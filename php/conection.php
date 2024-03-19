@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost';
-$dbname = 'sao';
+$dbname = 'integradoranorma';
 $user = 'root';
 $password = '';
 

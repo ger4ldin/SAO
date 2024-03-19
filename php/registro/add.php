@@ -11,7 +11,5 @@ $insertar = "INSERT INTO usuarios (nombre, apellidopaterno, apellidomaterno, cor
     VALUES ('$nombre', '$apeP', '$apeM', '$correo', '$contrasena')";
 $respuesta = mysqli_query($con, $insertar);
 if (!$respuesta)  die("error al insertar");
-    echo "<script>
-    window.location.href='http://localhost/SAO/html/login.html'
-</script>";
+    echo "<script>window.location.href='http://localhost/SAO/html/login.html'</script>";
 ?>

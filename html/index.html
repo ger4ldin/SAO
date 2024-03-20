@@ -174,7 +174,7 @@
       const componenteDelProducto = ({ id, name, price, imagen }) => {
          return `
                <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-                  <img src="https://www.cityclub.com.mx/dw/image/v2/BGBD_PRD/on/demandware.static/-/Sites-soriana-grocery-master-catalog/default/dw90bf1c04/images/product/010343958104_A.jpg?sw=1000&amp;sh=1000&amp;sm=fit" alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
+                  <img src="${imagen}" alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
                   <p class="mb-0">${name}</p>
                   <span style="color: #fe6347;">$ ${price} MXN</span><br>
                   <form data-id=${id}>

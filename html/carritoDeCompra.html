@@ -17,7 +17,7 @@
    <script src="../boostrap/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="../css/style.css">
+   <!-- <link rel="stylesheet" href="../css/style.css"> -->
    <title>Carrito de Compra</title>
 </head>
 
@@ -26,7 +26,7 @@
       <div class="container-fluid row align-items-center">
          <div class="dropdown col-12 col-lg-3 col-md-3">
             <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-               <img src="../assets/logo.png" alt="logo-Sao" class="d-block " width="100" height="40"
+               <img src="../src/img/wallpaper/logo.png" alt="logo-Sao" class="d-block " width="100" height="40"
                   style="margin: 0 auto;">
             </a>
          </div>
@@ -113,31 +113,11 @@
    </div>
 
    <div class="carritoDeCompraFather container-fluid mb-5">
-      <h5 class="">
-         Selecionados (0)
-         <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-               d="M268 416h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12zM432 80h-82.41l-34-56.7A48 48 0 0 0 274.41 0H173.59a48 48 0 0 0-41.16 23.3L98.41 80H16A16 16 0 0 0 0 96v16a16 16 0 0 0 16 16h16v336a48 48 0 0 0 48 48h288a48 48 0 0 0 48-48V128h16a16 16 0 0 0 16-16V96a16 16 0 0 0-16-16zM171.84 50.91A6 6 0 0 1 177 48h94a6 6 0 0 1 5.15 2.91L293.61 80H154.39zM368 464H80V128h288zm-212-48h24a12 12 0 0 0 12-12V188a12 12 0 0 0-12-12h-24a12 12 0 0 0-12 12v216a12 12 0 0 0 12 12z">
-            </path>
-         </svg>
+      <h5 class="container">
+         Todos Los productos
       </h5>
       <div class="row carritoDeCompra" style="width:90%; max-width:1000px;margin: 0 auto;">
-         <div class="p-3 col-12 col-lg-7 col-md-7 container-fluid">
-            <div class="productCartSao shadow-sm mb-4 py-2 px-3 rounded-3 row" style="max-height: 250px;">
-               <div class="col-4 productCartSaoImg"
-                  style="background-image: url(&quot;https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/220px-Image_created_with_a_mobile_phone.png&quot;);">
-               </div>
-               <div class="col-5">
-                  <h5>Apple Watch Series 7</h5>
-                  <p>Smartwatch con pantalla siempre encendida y d</p>
-               </div>
-               <div class="col-3 row" style="height: 50%;"><span class="col-12 ">Costo: <b>$ 30</b></span><span
-                     class="col-12 mb-3">Total: <b> $120</b></span><span class="input-group-text col-4"
-                     style="cursor: pointer;">-</span><span class="input-group-text col-4 bg-white">4</span><span
-                     class="input-group-text col-4" style="cursor: pointer;">+</span><button
-                     class="btn btn-danger mt-3">Eliminar</button></div>
-            </div>
+         <div class="p-3 col-12 col-lg-7 col-md-7 container-fluid" id="productosDelCarrito">
          </div>
          <div class="carritoPedido shadow-sm p-3 col-12 col-lg-5 col-md-5 container-fluid">
             <h4>Resumen Del Pedido</h4>
@@ -146,7 +126,7 @@
                   <p>Subtotal</p>
                </div>
                <div class="col-6 text-end">
-                  <p>$ 100.00 MXN</p>
+                  <p id="total">$ 100.00 MXN</p>
                </div>
             </div>
             <div class="d-flex align-items-center">
@@ -156,26 +136,79 @@
                   </button>
                </a>
             </div>
-            <div class="carritoOrden mb-5">
-               <div class="">
-                  <div class="shadow-sm">
-                     <img src="../assets/metodos/visa.png" alt="marca" class="img-fluid" style="object-fit: contain;">
-                  </div>
-                  <div class="shadow-sm">
-                     <img src="../assets/metodos/oxxo.png" alt="marca" class="img-fluid" style="object-fit: contain;">
-                  </div>
-                  <div class="shadow-sm">
-                     <img src="../assets/metodos/mercadoPago.webp" alt="marca" class="img-fluid"
-                        style="object-fit: contain;">
-                  </div>
-                  <div class="shadow-sm">
-                     <img src="../assets/metodos/paypal.png" alt="marca" class="img-fluid" style="object-fit: contain;">
-                  </div>
-               </div>
-            </div>
          </div>
       </div>
    </div>
+   
+   <script>
+      const componenteDelProducto = ({id,name,id_product,description,price,imagen,quantity})=>{
+         return `
+            <div class="productCartSao shadow-sm mb-4 py-2 px-3 rounded-3 row" style="max-height: 250px;">
+               <div class="col-4 productCartSaoImg"
+                  style="background-image: url(${imagen});background-size: contain;background-repeat: no-repeat;">
+               </div>
+               <div class="col-5">
+                  <h5>${name}</h5>
+                  <p>${description}</p>
+               </div>
+               <div class="col-3 row" style="height: 50%;">
+                  <span class="col-12 ">Costo: <b>$ ${price}</b></span>
+                  <span class="col-12 mb-3">Total: <b> $ ${price*quantity}</b></span>
+                     <span class="input-group-text col-4" style="cursor: pointer;">-</span>
+                     <span class="input-group-text col-4 bg-white">${quantity}</span>
+                     <span
+                        class="input-group-text col-4" style="cursor: pointer;">+</span>
+                     <button
+                        class="btn btn-danger mt-3"
+                        onClick="eliminarProducto('${id}','${id_product}','${name}')"
+                     >Eliminar</button>
+               </div>
+            </div>
+         `
+      }
+      const eliminarProducto = async (id,id_product,name) =>{
+         console.log(sessionStorage.getItem("iduser"))
+         console.log(id_product)
+         console.log(name)
+         const data = new FormData();
+         data.append("id_user",sessionStorage.getItem("iduser"));
+         data.append("id_product",id_product)
+         if(confirm("¿Esta seguro? de eliminar: "+name))
+         await fetch("../php/cart/remove.php",{
+            method: "POST",
+            body: data
+         })
+             .then(res => res.json())
+             .then(data => {
+                 console.log(data)
+                 alert(data.data)
+                 if(data.success) window.location.reload()
+             })
+             .catch(err => console.log(err))
+      }
+      const traerCarrito = async ()=>{
+         const data = new FormData()
+         console.log(sessionStorage.getItem("iduser"))
+         data.append("id_user", sessionStorage.getItem("iduser"))
+         await fetch("../php/cart/get.php",{
+            method:'POST',
+            body: data
+         })
+         .then(response=>response.json())
+         .then(response=>{
+            total=0
+            console.log(response.data)
+            response.data.map(r =>{
+               document.getElementById("productosDelCarrito").innerHTML+=componenteDelProducto(r)
+               total+=r.price*r.quantity
+            });
+            document.getElementById("total").innerHTML=`$ ${total} MXN`
+            console.log(response.data)
+         })
+         .catch(e => console.log(e))
+      }
+      traerCarrito()
+   </script>
 </body>
 
 </html>

@@ -33,7 +33,7 @@ if (!$respuesta)  die("error al insertar");
         sessionStorage.setItem('sesion', 1)
         sessionStorage.setItem('iduser', $id)
         sessionStorage.setItem('is_user', true)
-        window.location.href='http://localhost/SAO/html/productos.html'
+        window.location.href='http://localhost/SAO/html/index.html'
         
         </script>";
 ?>

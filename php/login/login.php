@@ -17,7 +17,7 @@ if (!$respuesta) {
         $fila = mysqli_fetch_assoc($respuesta);
         var_dump($fila);
         $id=$fila['id'];
-        if ($fila['email'] === 'admin@gmail.com' && $contrasena === 'admin1234') {
+        if ($fila['email'] === 'admin@admin.com' && $contrasena === 'admin1234') {
             echo "<script>
                 sessionStorage.setItem('sesion', 1)
                 sessionStorage.setItem('iduser', $id)

@@ -5,7 +5,7 @@ $contrasena = $_POST['contrasena'];
 include("../conection.php");
 // $contrasena = password_hash($contrasena, PASSWORD_DEFAULT);
 
-$entrar = "SELECT email, password FROM user WHERE email='$correo' AND password='$contrasena'";
+$entrar = "SELECT id,email FROM user WHERE email='$correo' AND password='$contrasena'";
 $respuesta = mysqli_query($con, $entrar);
 if (!$respuesta) {
     die("Error: " . mysqli_error($con));
@@ -15,11 +15,23 @@ if (!$respuesta) {
         exit;
     } else {
         $fila = mysqli_fetch_assoc($respuesta);
+        var_dump($fila);
+        $id=$fila['id'];
         if ($fila['email'] === 'admin@gmail.com' && $contrasena === 'admin1234') {
-            echo "<script>window.location.href='http://localhost/SAO/html/indexAdmin.html'</script>";
+            echo "<script>
+                sessionStorage.setItem('sesion', 1)
+                sessionStorage.setItem('iduser', $id)
+                sessionStorage.setItem('is_user', false)
+                window.location.href='http://localhost/SAO/html/indexAdmin.html'
+            </script>";
             exit;
         } else {
-            echo "<script> window.location.href='http://localhost/SAO/html/index.html'</script>";
+            echo "<script> 
+            sessionStorage.setItem('sesion', 1)
+            sessionStorage.setItem('iduser', $id)
+            sessionStorage.setItem('is_user', true)
+                window.location.href='http://localhost/SAO/html/index.html'
+            </script>";
             exit;
         }
     }

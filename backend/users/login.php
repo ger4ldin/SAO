@@ -1,6 +1,6 @@
 <?php
-include("../php/cn.php");
-include("../php/cors.php");
+include("../cn.php");
+include("../cors.php");
 
 if(!isset($_POST['email'])) die("Error a recibir email");
 if(!isset($_POST['password'])) die("Error a recibir password");
@@ -16,6 +16,7 @@ if($resUser){
         $id_user = $row['id_user'];
     }
     if(mysqli_num_rows($resUser)>0){
+        
         die(json_encode([
             "success" => true,
             "data" => "Sesion exitosa",
@@ -28,5 +29,4 @@ if($resUser){
 } else {
     die(json_encode(["success" => false,"data" => "Error del server"]));
 }
-
-
+/*asdgdf*/

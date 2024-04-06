@@ -1,6 +1,6 @@
 <?php
-include("../php/cn.php");
-include("../php/cors.php");
+include("../cn.php");
+include("../cors.php");
 
 if(!isset($_POST['id_category'])) die(json_encode(["success" => false,"error" => "Error a recibir el id de la categoria"]));
 if(!isset($_POST['id_brand'])) die(json_encode(["success" => false,"error" => "Error a recibir el id de la marca"]));
@@ -13,7 +13,6 @@ if(!isset($_POST['stock'])) die(json_encode(["success" => false,"error" => "Erro
 if(!isset($_POST['price'])) die(json_encode(["success" => false,"error" => "Error a recibir el price"]));
 if(!isset($_POST['discount'])) die(json_encode(["success" => false,"error" => "Error a recibir el discount"]));
 
-/*
 $car = './assets/products/';
 if (!file_exists($car)) { mkdir($car, 0777); }
     
@@ -32,12 +31,11 @@ $mov = move_uploaded_file($fileTmpName, $fileDest);
 if(!$mov) die("Error al mover la imagen");
 
 $rutaImagen="/assets/products/".$fileNameNew;
-*/
 
 $id_category = $_POST['id_category'];
 $id_brand = $_POST['id_brand'];
 $name = $_POST['name'];
-$imagen = $_POST['imagen'];
+$imagen = $rutaImagen;
 $description = $_POST['description'];
 $specifications = $_POST['specifications'];
 $dimensions = $_POST['dimensions'];
@@ -57,10 +55,13 @@ if($resSearchBrand){
     if(mysqli_num_rows($resSearchBrand)<1){
         die(json_encode(["success" => false,"data" => "La marca no existe"]));}}
 
-$addProduct = "INSERT INTO product (id_category, id_brand, name, imagen, description, specifications, dimensions, stock, price, discount) VALUES ('$id_category', '$id_brand', '$name', '$imagen', '$description', '$specifications', '$dimensions', '$stock', '$price', '0')";
+$addProduct = "INSERT INTO product (id_category, id_brand, name, imagen, description, specifications, dimensions, stock, price, discount) VALUES ($id_category, $id_brand, '$name', '$imagen', '$description', '$specifications', '$dimensions', $stock, $price, '0')";
+
 $resProduct=mysqli_query($con,$addProduct);
 if(!$resProduct) die(json_encode(["success" => false,"data" => "Hubo un error al insertar en el producto"]));
 die(json_encode(["success" => true,"data" => "Producto agregado"]));
 
 
 
+
+/*sfdhfgh*/

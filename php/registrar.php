@@ -1,21 +1,21 @@
 <?php
-include("./cn.php");
-include("./cors.php");
+include("../php/cn.php");
+include("../php/cors.php");
+include("../php/utils.php");
 
-if(!isset($_POST['name'])) json_encode(["success" => false,"error" => "Error a recibir name"]);
-if(!isset($_POST['spelitF'])) json_encode(["success" => false,"error" => "Error a recibir spelitF"]);
-if(!isset($_POST['spelitM'])) json_encode(["success" => false,"error" => "Error a recibir spelitM"]);
-if(!isset($_POST['email'])) json_encode(["success" => false,"error" => "Error a recibir email"]);
-if(!isset($_POST['password'])) json_encode(["success" => false,"error" => "Error a recibir password"]);
+if(!isset($_POST['nombre'])) json_encode(["success" => false,"error" => "Error a recibir name"]);
+if(!isset($_POST['apeP'])) json_encode(["success" => false,"error" => "Error a recibir spelitF"]);
+if(!isset($_POST['apeM'])) json_encode(["success" => false,"error" => "Error a recibir spelitM"]);
+if(!isset($_POST['correo'])) json_encode(["success" => false,"error" => "Error a recibir email"]);
+if(!isset($_POST['contrasena'])) json_encode(["success" => false,"error" => "Error a recibir password"]);
 
+$nombre = $_POST['nombre'];
+$apeP = $_POST['apeP'];
+$apeM = $_POST['apeM'];
+$correo = $_POST['correo'];
+$contrasena = $_POST['contrasena'];
 
-$name = $_POST['name'];
-$spelitF = $_POST['spelitF'];
-$spelitM = $_POST['spelitM'];
-$email = $_POST['email'];
-$password = $_POST['password'];
-
-$sentenciaEmail = "SELECT * FROM user WHERE email='$email'";
+$sentenciaEmail = "SELECT * FROM user WHERE email='$contrasena'";
 $resUser=mysqli_query($con,$sentenciaEmail);
 if($resUser){
     if(mysqli_num_rows($resUser)>0){
@@ -23,7 +23,25 @@ if($resUser){
     }
 }
 
-$senUser = "INSERT INTO user (name, lastnameF, lastnameM, email, password, id_address, id_user, status) VALUES ('$name', '$spelitF', '$spelitM', '$email', '$password',1,3,1)";
-$resUser=mysqli_query($con,$senUser);
-if(!$resUser) die(json_encode(["success" => false,"data" => "Hubo un error al insertar en usuarios"]));
-die(json_encode(["success" => true,"data" => "Usuario Registrado"]));
+$insertar = "INSERT INTO user (name, lastnameF, lastnameM, email, password, id_address, id_user, status) 
+    VALUES ('$nombre', '$apeP', '$apeM', '$correo', '$contrasena',1,1,3)";
+$respuesta = mysqli_query($con, $insertar);
+
+$sentenciaSesion = "SELECT id,id_user FROM user WHERE email='$correo' and password='$contrasena'";
+$resUser=mysqli_query($con,$sentenciaSesion);
+
+if($resUser){
+    while ($row = mysqli_fetch_assoc($resUser)) {
+        $id = $row['id'];
+        $id_user = $row['id_user'];
+    }
+}
+
+if (!$respuesta)  die("error al insertar");
+    echo "<script>
+        sessionStorage.setItem('sesion', 1)
+        sessionStorage.setItem('iduser', $id)
+        sessionStorage.setItem('is_user', true)
+        window.location.href='http://localhost/SAO/html/index.html'
+        </script>";
+?>

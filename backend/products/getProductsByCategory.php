@@ -1,7 +1,7 @@
 <?php
-include("../php/cn.php");
-include("../php/cors.php");
-include("../php/utils.php");
+include("../cn.php");
+include("../cors.php");
+include("../utils.php");
 
 if(!isset($_GET['category'])) die("Error a recibir la categoria");
 
@@ -16,8 +16,9 @@ $sentenciaSesion = "SELECT p.id,p.name,p.imagen,p.description,p.dimensions,p.sto
     INNER JOIN cat_category cc ON p.id_category=cc.id
     INNER JOIN cat_brand cb ON p.id_brand=cb.id
     $where
-    ORDER BY RAND() 
-    ";
+    ORDER BY RAND()
+";
+
 
 $resUser=mysqli_query($con,$sentenciaSesion);
 
@@ -25,13 +26,13 @@ $json = array();
 while ($row = mysqli_fetch_assoc($resUser)) {
     $json[] = $row;
 }
-die(json_encode([
-    "success" => true,
-    "data" => $json
-]));
+response(
+    1,
+    $json
+);
 
 
 
-
+/*sdfbfg*/
 
 

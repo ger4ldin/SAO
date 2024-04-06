@@ -1,6 +1,8 @@
 <?php
-include("../cn.php");
-include("../cors.php");
+include("../php/cn.php");
+include("../php/cors.php");
+include("../php/getAll.php");
+include("../php/utils.php");
 
 
 $getCategories = "SELECT * FROM cat_category";

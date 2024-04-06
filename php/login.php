@@ -1,8 +1,12 @@
 <?php
+include("../php/cn.php");
+include("../php/cors.php");
+
+if(!isset($_POST['email'])) die("Error a recibir email");
+if(!isset($_POST['password'])) die("Error a recibir password");
+
 $correo = $_POST['correo'];
 $contrasena = $_POST['contrasena'];
-
-include("../conection.php");
 // $contrasena = password_hash($contrasena, PASSWORD_DEFAULT);
 
 $entrar = "SELECT id,email FROM user WHERE email='$correo' AND password='$contrasena'";
@@ -22,7 +26,7 @@ if (!$respuesta) {
                 sessionStorage.setItem('sesion', 1)
                 sessionStorage.setItem('iduser', $id)
                 sessionStorage.setItem('is_user', false)
-                window.location.href='http://localhost/SAO/html/indexAdmin.html'
+                window.location.href='http://localhost/SAO/html/principalAdmin.html'
             </script>";
             exit;
         } else {
@@ -30,7 +34,7 @@ if (!$respuesta) {
             sessionStorage.setItem('sesion', 1)
             sessionStorage.setItem('iduser', $id)
             sessionStorage.setItem('is_user', true)
-                window.location.href='http://localhost/SAO/html/index.html'
+                window.location.href='http://localhost/SAO/html/principalUser.html'
             </script>";
             exit;
         }

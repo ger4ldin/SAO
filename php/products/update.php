@@ -1,6 +1,7 @@
 <?php
-include("../cn.php");
-include("../cors.php");
+include("../php/cn.php");
+include("../php/cors.php");
+include("../php/search.php");
 
 if(!isset($_POST['id'])) die(json_encode(["success" => false,"error" => "Error a recibir el id"]));
 if(!isset($_POST['id_category'])) die(json_encode(["success" => false,"error" => "Error a recibir el id de la categoria"]));
@@ -56,11 +57,3 @@ $addProduct = "UPDATE product SET
 $resProduct=mysqli_query($con,$addProduct);
 if(!$resProduct) die(json_encode(["success" => false,"data" => "Hubo un error al insertar en el producto"]));
 die(json_encode(["success" => true,"data" => "Producto actualizado"]));
-
-
-
-
-// INSERT INTO product (id, id_category, id_brand, name, imagen, description, specifications, dimensions, stock, price, discount, status, created_at, last_update) VALUES (NULL, '', '', '', '', '', '', NULL, '', '', '0', '1', '2024-03-19 20:46:26.000000', CURRENT_TIMESTAMP)
-
-
-

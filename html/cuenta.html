@@ -1,105 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl7/1L_dstPt3HV5HzF6Gvk/e3s4Wz6iJgD/+ub2oU" crossorigin="anonymous">
-    <title>Mi cuenta</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        .list-group-item.active {
-            background-color: #007bff;
-            color: white;
-        }
-        .list-group-item {
-            border: none;
-            padding: 0.5rem 1rem;
-            transition: background-color 0.2s ease-in-out;
-        }
-        .list-group-item:hover {
-            background-color: #f8f9fa;
-        }
-        .card {
-            border: none;
-            border-radius: 0;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        .card-header {
-            background-color: #f8f9fa;
-            border-bottom: none;
-        }
-        .card-title {
-            font-weight: bold;
-        }
-        .list-group-item-details {
-            padding: 0.5rem 1rem;
-            border-bottom: 1px solid #dee2e6;
-        }
-        .list-group-item-details:last-child {
-            border-bottom: none;
-        }
-        .order-details {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .order-status {
-            font-weight: bold;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="row">
-            <div class="col-3">
-                <div class="list-group">
-                    <a href="#" class="list-group-item list-group-item-action active" aria-current="true">Mi cuenta</a>
-                    <a href="#" class="list-group-item list-group-item-action">Nombre</a><br>
-                    <a href="#" class="list-group-item list-group-item-action">Correo Electrónico</a><br>
-                    <a href="#" class="list-group-item list-group-item-action">Cambiar contraseña</a><br>
-                    <a href="#" class="list-group-item list-group-item-action">Registro de direcciones</a><br>
-                    <a href="#" class="list-group-item list-group-item-action">Eliminar cuenta</a><br>
-                    <a href="#" class="list-group-item list-group-item-action">Servicio al cliente</a><br>
-                    <a href="#" class="list-group-item list-group-item-action">Mis pedidos</a>
-                </div>
-            </div>
-            <div class="col-9">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title">My Orders</h5>
-                    </div>
-                    <div class="card-body">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <strong>19 Sep 2023 18:30</strong>
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        Details
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="list-group-item">
-                                <div class="row">
-                                    <div class="col-6">
-                                        8 Articulos
-                                    </div>
-                                    <div class="col-6 text-end">
-                                        SMNX 180.00 Entregado
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybB5IXNxFwWQfE7u8Lj+XJHAxKlXiG/8rsrtpb6PEdzD828Ii" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
-</body>
+<head>
+   <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+      </script>
+   <link rel="stylesheet" href="../src/css/style.css">
+   <title>Cuenta administrador</title>
+</head>
+
+<body>
+   <header class="py-3 border-bottom">
+      <div class="container-fluid row align-items-center">
+      <div class="dropdown col-12 col-lg-3 col-md-3">
+          <a href="../html/index.html"
+              class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+              <img src="../src/img/wallpaper/logo.png" alt="logo-Sao" class="d-block " width="100" height="40"
+                  style="margin: 0 auto;">
+          </a>
+      </div>
+
+      <div class="d-flex align-items-center d-grid gap-2 align-items-center col-12 col-lg-9 col-md-9"
+          style="grid-template-columns: 95% 1fr;">
+          <!-- Search -->
+          <form class="w-100 me-3" role="search">
+              <div class="input-group ">
+                  <span class="input-group-text" id="basic-addon1" style="background-color: #fe6347;color: white;">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em"
+                      width="1em" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                          d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
+                      </path>
+                  </svg>
+                  </span>
+                  <input type="text" class="form-control input" placeholder="¿Que desea encontrar?"
+                  aria-label="Username" aria-describedby="basic-addon1">
+              </div>
+          </form>
+
+          <div class="flex-shrink-0 dropdown">
+              <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle fs-2"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" height="1em"
+                  width="1em" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 4H21V6H3V4ZM9 11H21V13H9V11ZM3 18H21V20H3V18Z"></path>
+                  </svg>
+              </a>
+              <ul class="dropdown-menu text-small shadow">
+                  <li><a class="dropdown-item mb-2 py-2 " href="../html/cuentaAdmin.html">
+                      <svg class="fs-3" stroke="currentColor" fill="currentColor" stroke-width="0"
+                          viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                              d="M313.6 304c-28.7 0-42.5 16-89.6 16-47.1 0-60.8-16-89.6-16C60.2 304 0 364.2 0 438.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-25.6c0-74.2-60.2-134.4-134.4-134.4zM400 464H48v-25.6c0-47.6 38.8-86.4 86.4-86.4 14.6 0 38.3 16 89.6 16 51.7 0 74.9-16 89.6-16 47.6 0 86.4 38.8 86.4 86.4V464zM224 288c79.5 0 144-64.5 144-144S303.5 0 224 0 80 64.5 80 144s64.5 144 144 144zm0-240c52.9 0 96 43.1 96 96s-43.1 96-96 96-96-43.1-96-96 43.1-96 96-96z">
+                          </path>
+                      </svg>
+                      <span class="container">Mi cuenta</span>
+                  </a></li>
+                  <li><a class="dropdown-item mb-2 py-2 " href="../html/principalAdmin.html">
+                      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h12V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zm2 .5a.5.5 0 0 1 .5.5V13h8V9.5a.5.5 0 0 1 1 0V13a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5a.5.5 0 0 1 .5-.5z"></path></svg>
+                      <span class="container">Tienda</span>
+                  </a></li>
+                  <li><a class="dropdown-item mb-2 py-2 " href="../html/index.html">
+                      <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M256 90c44.3 0 86 17.3 117.4 48.6C404.7 170 422 211.7 422 256s-17.3 86-48.6 117.4C342 404.7 300.3 422 256 422s-86-17.3-117.4-48.6C107.3 342 90 300.3 90 256s17.3-86 48.6-117.4C170 107.3 211.7 90 256 90m0-42C141.1 48 48 141.1 48 256s93.1 208 208 208 208-93.1 208-208S370.9 48 256 48z"></path><path d="M360 330.9L330.9 360 256 285.1 181.1 360 152 330.9l74.9-74.9-74.9-74.9 29.1-29.1 74.9 74.9 74.9-74.9 29.1 29.1-74.9 74.9z"></path></svg>
+                      <span class="container">Cerrar Sesión</span>
+                  </a></li>
+              </ul>
+          </div>
+      </div>
+      </div>
+  </header>
+    <div class="container mx-auto row py-5 d-flex justify-content-between">
+        <div class="container shadow-sm col-6 row">
+           <div class="row">
+              <div class="col-12">
+                 <h4>Mi cuenta</h4>
+                 <hr>
+              </div>
+           </div>
+           <div class="row">
+              <div class="mb-3">
+                 <div class="form-group">
+                    <label for="name">Nombre:</label>
+                 </div>
+                 <div class="form-group">
+                    <label for="email">Correo Electrónico:</label>
+                    <div class="form-group">
+                       <label for="change-password">Contraseña:</label>
+                       <a class="nav-link nav-item" href="#">Cambiar contraseña</a>
+                    </div>
+                    <div class="form-group">
+                       <label for="address-register">Registro de direcciones:</label>
+                       <a class="nav-link nav-item" href="#">Registrar dirección</a>
+                    </div>
+                    <div class="form-group">
+                       <a href="#" class="btn btn-danger">Eliminar cuenta</a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+  
+        <div class="container shadow-sm col-6 row">
+           <div class="row">
+              <div class="mb-3">
+                 <h4>blablablabla</h4>
+                 <hr>
+              </div>
+           </div>
+           <div class="row">
+              <div class="col-6">
+                 <div class="form-group">
+                    <label for="name">Ventas realizadas y monitoreo de pedidos</label>
+                 </div>
+                 <div class="form-group">
+                    <label for="email">Informes de Utilidad</label>
+                    <div class="form-group">
+                       <a class="nav-link nav-item" href="#">Adiministrar Productos</a>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+     </div></body>
 </html>

@@ -1,7 +1,7 @@
 <?php
-include("./cn.php");
-include("./cors.php");
-include("./utils.php");
+include("../cn.php");
+include("../cors.php");
+include("../utils.php");
 
 if(!isset($_POST['nombre'])) json_encode(["success" => false,"error" => "Error a recibir name"]);
 if(!isset($_POST['apeP'])) json_encode(["success" => false,"error" => "Error a recibir spelitF"]);

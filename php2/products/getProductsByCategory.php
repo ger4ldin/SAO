@@ -16,9 +16,8 @@ $sentenciaSesion = "SELECT p.id,p.name,p.imagen,p.description,p.dimensions,p.sto
     INNER JOIN cat_category cc ON p.id_category=cc.id
     INNER JOIN cat_brand cb ON p.id_brand=cb.id
     $where
-    ORDER BY RAND()
-";
-
+    ORDER BY RAND() 
+    ";
 
 $resUser=mysqli_query($con,$sentenciaSesion);
 
@@ -26,13 +25,13 @@ $json = array();
 while ($row = mysqli_fetch_assoc($resUser)) {
     $json[] = $row;
 }
-response(
-    1,
-    $json
-);
+die(json_encode([
+    "success" => true,
+    "data" => $json
+]));
 
 
 
-/*sdfbfg*/
+
 
 

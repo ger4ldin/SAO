@@ -93,5 +93,3 @@ class getAll
         return $json;
     }
 }
-
-/*dfgnghnDH*/

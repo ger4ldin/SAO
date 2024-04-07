@@ -179,14 +179,10 @@
             .catch(err => console.log(err))
       })
       const traerporcategoria = async () => {
-         const data = new FormData()
-         data.append("category", 1)
-         await fetch("../php/products/getProductsByCategory.php", {
-            method: 'POST',
-            body: data
-         })
+         await fetch("../php/products/getProductsByCategory.php?category=0",)
             .then(response => response.json())
             .then(response => {
+               console.log(response)
                response.data.map(r => {
                   document.getElementById("productos").innerHTML += componenteDelProducto(r)
                });
@@ -196,37 +192,6 @@
       }
       traerporcategoria()
    </script>
-
-   <div class="container-fluid mb-5">
-      <h3>Lo mas Vendido</h3>
-      <div class="row">
-         <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-            <img src="https://www.cityclub.com.mx/dw/image/v2/BGBD_PRD/on/demandware.static/-/Sites-soriana-grocery-master-catalog/default/dw90bf1c04/images/product/010343958104_A.jpg?sw=1000&sh=1000&sm=fit"
-               alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
-            <p class="mb-0">Nombre</p>
-            <span style="color: #fe6347;">$ 100.99 MXN</span>
-         </div>
-         <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-            <img src="https://www.achemex.com/cdn/shop/products/313MxVBi3sL.jpg?v=1682008150" alt="marca"
-               class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
-            <p class="mb-0">Nombre</p>
-            <span style="color: #fe6347;">$ 100.99 MXN</span>
-         </div>
-         <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-            <img src="https://http2.mlstatic.com/D_NQ_NP_651013-MLU72836543473_112023-O.webp" alt="marca"
-               class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
-            <p class="mb-0">Nombre</p>
-            <span style="color: #fe6347;">$ 100.99 MXN</span>
-         </div>
-         <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-            <img
-               src="https://pcoax.com.mx/14400-large_default/impresora-multifuncional-canon-maxify-gx7010-tinta-continua.jpg"
-               alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
-            <p class="mb-0">Nombre</p>
-            <span style="color: #fe6347;">$ 100.99 MXN</span>
-         </div>
-      </div>
-   </div>
 
 </body>
 

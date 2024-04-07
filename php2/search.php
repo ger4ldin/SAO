@@ -94,5 +94,3 @@ class Search
         return true;
     }
 }
-
-/*cbngh*/

@@ -2,8 +2,8 @@
 include("./cn.php");
 include("./cors.php");
 
-if(!isset($_POST['correo'])) die("Error a recibir email");
-if(!isset($_POST['contrasena'])) die("Error a recibir password");
+if(!isset($_POST['email'])) die("Error a recibir email");
+if(!isset($_POST['password'])) die("Error a recibir password");
 
 $correo = $_POST['correo'];
 $contrasena = $_POST['contrasena'];
@@ -23,17 +23,17 @@ if (!$respuesta) {
         $id=$fila['id'];
         if ($fila['email'] === 'admin@admin.com' && $contrasena === 'admin1234') {
             echo "<script>
-                localStorage.setItem('sesion', 1)
-                localStorage.setItem('iduser', $id)
-                localStorage.setItem('is_user', false)
+                sessionStorage.setItem('sesion', 1)
+                sessionStorage.setItem('iduser', $id)
+                sessionStorage.setItem('is_user', false)
                 window.location.href='http://localhost/SAO/html/principalAdmin.html'
             </script>";
             exit;
         } else {
             echo "<script> 
-            localStorage.setItem('sesion', 1)
-            localStorage.setItem('iduser', $id)
-            localStorage.setItem('is_user', true)
+            sessionStorage.setItem('sesion', 1)
+            sessionStorage.setItem('iduser', $id)
+            sessionStorage.setItem('is_user', true)
                 window.location.href='http://localhost/SAO/html/principalUser.html'
             </script>";
             exit;

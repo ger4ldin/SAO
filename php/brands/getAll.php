@@ -1,14 +1,19 @@
 <?php
 include("../cn.php");
 include("../cors.php");
+include("../getAll.php");
+include("../utils.php");
 
 
-$getbrands = "SELECT * FROM cat_brand";
-$resBrands=mysqli_query($con,$getbrands);
+$select = "SELECT * FROM cat_brand";
+$response = mysqli_query($con, $select);
+
 $json = array();
-while ($row = mysqli_fetch_assoc($resBrands)) {
-    $json[] = $row;
+while ($row = mysqli_fetch_assoc($response)) { 
+    $json[] = array(
+        'id' => $row['id'],
+        'text' => $row['brand'],
+    );
 }
-die(json_encode(["success" => false,"data" => $json]));
-
+response(1,$json);
 

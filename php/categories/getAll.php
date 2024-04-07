@@ -1,16 +1,19 @@
 <?php
-include("../php/cn.php");
-include("../php/cors.php");
-include("../php/getAll.php");
-include("../php/utils.php");
+include("../cn.php");
+include("../cors.php");
+include("../getAll.php");
+include("../utils.php");
 
+$select = "SELECT * FROM cat_category";
+$response = mysqli_query($con, $select);
 
-$getCategories = "SELECT * FROM cat_category";
-$resCategories=mysqli_query($con,$getCategories);
 $json = array();
-while ($row = mysqli_fetch_assoc($resCategories)) {
-    $json[] = $row;
+while ($row = mysqli_fetch_assoc($response)) { 
+    $json[] = array(
+        'id' => $row['id'],
+        'text' => $row['category'],
+    );
 }
-die(json_encode(["success" => false,"data" => $json]));
+response(1,$json);
 
-
+/*fsgngh*/

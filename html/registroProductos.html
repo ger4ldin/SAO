@@ -164,6 +164,15 @@
                 <div class="container">
                     <div class="row">
                         <div class="mt-3 col-12 col-md-6">
+                            <div class="inputSaoSec">
+                                <label for="name">Imagen:<small>*</small>
+                                </label>
+                                <input type="file" name="InputImage" placeholder="" maxlength="50"
+                                    value="">
+                                <span>
+                            </div> 
+                        </div>
+                        <div class="mt-3 col-12 col-md-6">
                             <div class="inputSaoSec select">
                                 <label for="name">Categoria:</label>
                                 <select name="selectCategory">
@@ -178,27 +187,6 @@
                             <div class="inputSaoSec select">
                                 <label for="name">Marca:</label>
                                 <select name="selectBrand">
-                                    <option value="2">Sony</option>
-                                    <option value="3">Samsung</option>
-                                    <option value="4">Apple</option>
-                                    <option value="5">Bose</option>
-                                    <option value="6">Canon</option>
-                                    <option value="7">Post-it</option>
-                                    <option value="8">Sharpie</option>
-                                    <option value="9">Prismacolor</option>
-                                    <option value="10">Moleskine</option>
-                                    <option value="11">Expo</option>
-                                    <option value="12">Requiez</option>
-                                    <option value="13">H2</option>
-                                    <option value="14">Offiho</option>
-                                    <option value="15">Techno</option>
-                                    <option value="16">Versa</option>
-                                    <option value="17">Estrella</option>
-                                    <option value="18">NORMA</option>
-                                    <option value="19">SCRIBE</option>
-                                    <option value="20">PILOT</option>
-                                    <option value="21">AZOR</option>
-                                    <option value="22">marca1</option>
                                     <option value="1">marca</option>
                                 </select>
                             </div>
@@ -318,18 +306,21 @@
                 selectBrand,
                 InputName,
                 InputDescription,
+                InputImage,
                 InputSpecification,
                 InputDimencions,
                 InputQuantity,
                 InputPrice,
             } = form
 
+            console.log(InputImage.files[0])
+
             const data = new FormData()
             data.append("id", window.location.search.split("=")[1])
             data.append("id_category", selectCategory.value)
             data.append("id_brand", selectBrand.value)
             data.append("name", InputName.value)
-            data.append("imagen", imagen ?? "")
+            data.append("imagen", InputImage.files[0])
             data.append("description", InputDescription.value)
             data.append("specifications", InputSpecification.value)
             data.append("dimensions", InputDimencions.value)
@@ -341,7 +332,7 @@
                 method: 'POST',
                 body: data,
             })
-                .then(res => res.json())
+                .then(res => res.text())
                 .then(data => {
                     console.log(data)
                     if(data.success) window.location.href="http://localhost/SAO/html/cuentaAdmin.html"

@@ -1,6 +1,6 @@
 <?php
-include("../php/cn.php");
-include("../php/cors.php");
+include("../cn.php");
+include("../cors.php");
 
 if(!isset($_POST['email'])) die("Error a recibir email");
 if(!isset($_POST['password'])) die("Error a recibir password");

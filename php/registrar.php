@@ -24,7 +24,7 @@ if($resUser){
 }
 
 $insertar = "INSERT INTO user (name, lastnameF, lastnameM, email, password, id_address, id_user, status) 
-    VALUES ('$nombre', '$apeP', '$apeM', '$correo', '$contrasena',1,1,3)";
+    VALUES ('$nombre', '$apeP', '$apeM', '$correo', '$contrasena',1,3,3)";
 $respuesta = mysqli_query($con, $insertar);
 
 $sentenciaSesion = "SELECT id,id_user FROM user WHERE email='$correo' and password='$contrasena'";

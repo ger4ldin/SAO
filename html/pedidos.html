@@ -133,116 +133,37 @@
                         <th class="py-3"></th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="" style="font-size: 15px;">
-                        <td><span>5</span></td>
-                        <td class=""><img
-                                src="https://portafolio.xantheapp.com/api/integradoranorma/backend/products/assets/products/660de2faab0bd0.81592896.jpg"
-                                alt="" style="width: 100%; height: 70px;"></td>
-                        <td class=""><span>BIC, Lápices de Punta Resistente, Lápiz de Grafito</span></td>
-                        <td class=""><span>ofertas</span></td>
-                        <td class=""><span>visa</span></td>
-                        <td class=""><span><b class="colorStatus1">pendiente</b></span></td>
-                        <td class=""><span>1</span></td>
-                        <td class=""><span>$30</span></td>
-                        <td class=""><span>30</span></td>
-                        <td><span><button class="btn btn-info text-light">Detalles</button></span></td>
-                    </tr>
+                <tbody id="pedidos">
+                    
                 </tbody>
             </table>
         </table>
     </div>
-    <div class="container mt-5 mb-2" style="cursor: pointer;">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
-                <li class="breadcrumb-item">
-                    <h6 class="link-body-emphasis"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                            version="1.2" baseProfile="tiny" viewBox="0 0 24 24" height="1em" width="1em"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M22.262 10.468c-3.39-2.854-9.546-8.171-9.607-8.225l-.655-.563-.652.563c-.062.053-6.221 5.368-9.66 8.248-.438.394-.688.945-.688 1.509 0 1.104.896 2 2 2h1v6c0 1.104.896 2 2 2h12c1.104 0 2-.896 2-2v-6h1c1.104 0 2-.896 2-2 0-.598-.275-1.161-.738-1.532zm-8.262 9.532h-4v-5h4v5zm4-8l.002 8h-3.002v-6h-6v6h-3v-8h-3.001c2.765-2.312 7.315-6.227 9.001-7.68 1.686 1.453 6.234 5.367 9 7.681l-3-.001z">
-                            </path>
-                        </svg><span class="visually-hidden">Home</span></h6>
-                </li>
-                <li class="breadcrumb-item"><span class="link-body-emphasis fw-semibold text-decoration-none"
-                        href="#">Admin</span></li>
-                <li class="breadcrumb-item active" aria-current="page">Ventas</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container mb-5">
-        <div class="row">
-            <div class="col-12 mb-2">
-                <h3>Ventas</h3>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-striped shadow-sm" style="background: red;">
-                <thead>
-                    <tr class="">
-                        <th class="py-3">#</th>
-                        <th class="py-3">Usuario</th>
-                        <th class="py-3">Email</th>
-                        <th class="py-3">Imagen</th>
-                        <th class="py-3">Producto</th>
-                        <th class="py-3">Categoria</th>
-                        <th class="py-3">Metodo</th>
-                        <th class="py-3">Status</th>
-                        <th class="py-3">Pz</th>
-                        <th class="py-3">Precio</th>
-                        <th class="py-3">Total</th>
-                        <th class="py-3"></th>
-                    </tr>
-                </thead>
-                <tbody id="ventas">
-                    
-                </tbody>
-            </table>
-        </div>
-    </div>
+  
     <script>
-        const componenteVentas =({})=>{
+        const componentePedidos =({id,imagen,name_product,category,payment_status,payment_method,quantity,price,description})=>{
             return `
-            <div>
-                <h1>Ventas</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Usuario</th>
-                            <th>Email</th>
-                            <th>Imagen</th>
-                            <th>Producto</th>
-                            <th>Categoría</th>
-                            <th>Método</th>
-                            <th>Status</th>
-                            <th>Pz</th>
-                            <th>Precio</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sales.map(d => (
-                            <tr key={d.id}>
-                                <td>{d.id}</td>
-                                <td>{d.name_user}</td>
-                                <td>{d.email}</td>
-                                <td><img src={d.imagen} alt="" /></td>
-                                <td>{d.name_product}</td>
-                                <td>{d.category}</td>
-                                <td>{d.payment_method}</td>
-                                <td>{d.payment_status}</td>
-                                <td>{d.quantity}</td>
-                                <td>{d.price}</td>
-                                <td>{d.quantity * d.price}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>   
+            
+                <tr class="" style="font-size: 15px;">
+                    <td><span>${id}</span></td>
+                    <td class=""><img
+                            src="${imagen}"
+                            alt="" style="width: 100%; height: 70px;"></td>
+                    <td class=""><span>${name_product}</span></td>
+                    <td class=""><span>${category}</span></td>
+                    <td class=""><span>${payment_method}</span></td>
+                    <td class=""><span><b class="colorStatus1">${payment_status}</b></span></td>
+                    <td class=""><span>${quantity}</span></td>
+                    <td class=""><span>$ ${price} MNX</span></td>
+                    <td class=""><span>${quantity * price}</span></td>
+                    <td><a href="http://localhost/SAO/html/detalles.html?id=${id}" style="text-decoration: none">
+                        <span><button class="btn btn-info text-light">Detalles</button></span>
+                        </a>
+                    </td>
+                </tr>
             `
         }
-        const traerVentas = async () => {
+        const traerPedidos = async () => {
             const data = new FormData()
             console.log(sessionStorage.getItem("iduser"))
             data.append("id_user", localStorage.getItem("iduser"))
@@ -252,19 +173,17 @@
             })
                .then(response => response.json())
                .then(response => {
-                  total = 0
+                  
                   console.log(response.data)
                   response.data.map(r => {
-                     document.getElementById("ventas").innerHTML += componenteVentas(r)
-                     //total += r.price * r.quantity
+                     document.getElementById("pedidos").innerHTML += componentePedidos(r)
+                     
                   });
-                  //document.getElementById("total").innerHTML = `$ ${total} MXN`
                   console.log(response.data)
                })
                .catch(e => console.log(e))
          }
-         traerVentas()
-  
+         traerPedidos();
     </script>
 
 </body>

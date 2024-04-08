@@ -102,7 +102,7 @@
         </nav>
     </div>
     <div class="container mb-5 my-3">
-        <form class="shadow-sm py-4 px-2">
+        <form class="shadow-sm py-4 px-2" id="pagar">
             <div class="container mx-auto">
                 <h5>Agregar producto</h5>
                 <div class="container">
@@ -187,7 +187,63 @@
         </form>
     </div>
     <script>
-        const form = document.querySelector('form');
+      /*
+      <!-- const pagar = document.getElementById("pagar");
+      
+
+      const enviar = async ()=>{
+          const {
+              inputBuyCountry,
+              inputBuyState,
+              inputBuylocality,
+              inputBuyMainStreet,
+              inputBuyStreet1,
+              inputBuyStreet2,
+              inputBuyReferences,
+     
+              inputBuyPM,
+              inputBuyTitular,
+              inputBuyNumberCard,
+              inputBuyExpiration,
+              inputBuyCVV,
+           } = pagar
+           const data = new FormData()
+           data.append("id_user",localStorage.getItem("iduser"))
+           data.append("inputBuyCountry",inputBuyCountry.value)
+           data.append("inputBuyState",inputBuyState.value)
+           data.append("inputBuylocality",inputBuylocality.value)
+           data.append("inputBuyMainStreet",inputBuyMainStreet.value)
+           data.append("inputBuyStreet1",inputBuyStreet1.value)
+           data.append("inputBuyStreet2",inputBuyStreet2.value)
+           data.append("inputBuyReferences",inputBuyReferences.value)
+           data.append("inputBuyPM","1")
+           data.append("inputBuyTitular",inputBuyTitular.value)
+           data.append("inputBuyNumberCard",inputBuyNumberCard.value)
+           data.append("inputBuyExpiration",inputBuyExpiration.value)
+           data.append("inputBuyCVV",inputBuyCVV.value)
+
+           await fetch("../php/buy/add.php",{
+               method: "POST",
+               body: data,
+            })
+            .then(response => response.json())
+            .then(json => {
+               if(json.success) {
+                  alert(json.data)
+                  return
+               }
+            })
+            .catch(err => console.log(err))
+      }
+      
+      pagar.addEventListener("submit", e=>{
+         e.preventDefault();
+         enviar()
+     })*/
+
+
+/*advfrf*/
+        const form = document.querySelectorAll('form')[1];
         const inputFile = document.querySelector('#inputFile');
         const imagen = document.querySelector('#imagen');
 
@@ -199,6 +255,29 @@
             };
             reader.readAsDataURL(file);
         });
+
+        const obtenerProducto= async ()=>{
+         if(window.location.href.includes("?")){
+            await fetch(
+                  '../php/products/getById.php?id_product='+window.location.href.split("=")[1]
+               )
+                .then(response => response.json())
+                .then(d => {
+                  const data=d.data[0]
+                  document.getElementById('imagen').src=data.imagen
+                  form.querySelector('[name="selectCategory"]').innerHTML+=`<option value="${data.id_category}>${data.category}</option>`;
+                  form.querySelector('[name="selectBrand"]').innerHTML+=`<option value="${data.id_brand}>${data.brand}</option>`;
+                  form.querySelector('[name="InputName"]').value=data.name;
+                  form.querySelector('[name="InputDescription"]').value=data.description;
+                  form.querySelector('[name="InputSpecification"]').value=data.specifications;
+                  form.querySelector('[name="InputDimencions"]').value=data.dimensions;
+                  form.querySelector('[name="InputQuantity"]').value=data.stock;
+                  form.querySelector('[name="InputPrice"]').value=data.price;
+                })
+                .catch(error => console.error(error));
+         }
+        }
+        obtenerProducto()
 
         form.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -212,6 +291,7 @@
             const InputPrice = form.querySelector('[name="InputPrice"]');
 
             const formData = new FormData();
+            formData.append('id', window.location.href.split("=")[1] ?? "");
             formData.append('id_category', selectCategory.value);
             formData.append('id_brand', selectBrand.value);
             formData.append('name', InputName.value);
@@ -223,14 +303,27 @@
             formData.append('price', InputPrice.value);
             formData.append('discount', '0.0');
 
-            fetch('../php/products/add.php', {
+            fetch(
+               window.location.href.includes("?") ?
+                  '../php/products/update.php'
+                  :
+                  '../php/products/add.php'
+               , {
                 method: 'POST',
                 body: formData,
             })
                 .then(response => response.json())
                 .then(data => {
+                  console.log(data);
                     if (data.success) {
-                        alert("Producto agregado correctamente");
+                        alert(
+                           
+                           window.location.href.includes("?") ?
+                           "Producto editado correctamente"
+                           :
+                           "Producto agregado correctamente"
+
+                        );
                     }
                 })
                 .catch(error => console.error(error));

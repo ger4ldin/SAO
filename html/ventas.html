@@ -118,8 +118,8 @@
                         <th class="py-3">Producto</th>
                         <th class="py-3">Categoria</th>
                         <th class="py-3">Metodo</th>
-                        <th class="py-3">Status</th>
-                        <th class="py-3">Pz</th>
+                        <th class="py-3">Estatus</th>
+                        <th class="py-3">Cantidad</th>
                         <th class="py-3">Precio</th>
                         <th class="py-3">Total</th>
                         <th class="py-3"></th>
@@ -132,52 +132,32 @@
         </div>
     </div>
     <script>
-        const componenteVentas =({})=>{
+        const componenteVentas =(d)=>{
             return `
-            <div>
-                <h1>Ventas</h1>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Usuario</th>
-                            <th>Email</th>
-                            <th>Imagen</th>
-                            <th>Producto</th>
-                            <th>Categoría</th>
-                            <th>Método</th>
-                            <th>Status</th>
-                            <th>Pz</th>
-                            <th>Precio</th>
-                            <th>Total</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {sales.map(d => (
-                            <tr key={d.id}>
-                                <td>{d.id}</td>
-                                <td>{d.name_user}</td>
-                                <td>{d.email}</td>
-                                <td><img src={d.imagen} alt="" /></td>
-                                <td>{d.name_product}</td>
-                                <td>{d.category}</td>
-                                <td>{d.payment_method}</td>
-                                <td>{d.payment_status}</td>
-                                <td>{d.quantity}</td>
-                                <td>{d.price}</td>
-                                <td>{d.quantity * d.price}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>   
+                            <tr>
+                                <td>${d.id_user}</td>
+                                <td>${d.name_user}</td>
+                                <td>${d.email}</td>
+                                <td><d.img src=${d.imagen} alt="" /</td>
+                                <td>${d.name_product}</td>
+                                <td>${d.category}</td>
+                                <td>${d.payment_method}</td>
+                                <td>${d.payment_status}</td>
+                                <td>${d.quantity}</td>
+                                <td>${d.price}</td>
+                                <td>${d.quantity * d.price}</td>  
+                                <td><a href="http://localhost/SAO/html/detalles.html?id=${d.id}" style="text-decoration: none;">
+                                    <span><button class="btn btn-info text-light">Detalles</button></span>
+                                    </a>
+                                </td>
+                                </tr>
             `
         }
         const traerVentas = async () => {
             const data = new FormData()
             console.log(sessionStorage.getItem("iduser"))
             data.append("id_user", localStorage.getItem("iduser"))
-            await fetch("../php/sales/getSaleByIdUser.php", {
+            await fetch("../php/sales/getAllSales.php", {
                method: 'POST',
                body: data
             })

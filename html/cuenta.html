@@ -112,7 +112,7 @@
         </div>
     </header>
     <div class="container mx-auto row py-5 d-flex justify-content-between">
-        <div class="container shadow-sm col-6 row">
+        <div class="container shadow-sm col-6 row" id="cuenta">
            <div class="row">
               <div class="col-12">
                  <h4>Mi cuenta</h4>
@@ -127,43 +127,53 @@
                  <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
                     <div class="form-group">
-                       <label for="change-password">Contraseña:</label>
-                       <a class="nav-link nav-item" href="#">Cambiar contraseña</a>
-                    </div>
-                    <div class="form-group">
                        <label for="address-register">Registro de direcciones:</label>
-                       <a class="nav-link nav-item" href="#">Registrar dirección</a>
-                    </div>
-                    <div class="form-group">
-                       <a href="#" class="btn btn-danger">Eliminar cuenta</a>
                     </div>
                  </div>
               </div>
            </div>
         </div>
   
-        <div class="container shadow-sm col-6 row">
+        <div class="container shadow-sm col-6 row" id="compras">
            <div class="row">
-              <div class="mb-3">
-                 <h4>blablablabla</h4>
+              <div class="">
+                 <h4>Mis compras</h4>
                  <hr>
-              </div>
-           </div>
-           <div class="row">
-              <div class="col-6">
-                 <div class="form-group">
-                    <label for="name">Ventas realizadas y monitoreo de pedidos</label>
-                 </div>
-                 <div class="form-group">
-                    <label for="email">Informes de Utilidad</label>
-                    <div class="form-group">
-                       <a class="nav-link nav-item" href="#">Adiministrar Productos</a>
-                    </div>
-                 </div>
+                 <label ></label>
+                 <label ></label>
               </div>
            </div>
         </div>
      </div>
+     <script>
+        
+        const obtenerProducto= async()=>{
+            if(window.location.search.split("=")[1]){
+                // window.location.href="./index.html"
+            }
+            await fetch("../php/users/getById.php?id_user="+localStorage.getItem("iduser"))
+            .then(response => response.json())
+            .then(res =>{
+                const {data} = res
+                console.log(data)
+                const cuenta = document.getElementById("cuenta");
+                cuenta.querySelectorAll("label")[0].innerHTML="<b>Nombre: </b>"+data.user.name
+                cuenta.querySelectorAll("label")[1].innerHTML="<b>Correo: </b>"+data.user.email
+                cuenta.querySelectorAll("label")[2].innerHTML=`
+                    <b class="fs-6">Direccion:</b>
+                    <br/>
+                    ${data.address.main_street} x ${data.address.street1} x ${data.address.street2} <br/>
+                    ${data.address.locality} x ${data.address.state} x Mexico <br/>
+                    `
+                const compras = document.getElementById("compras");
+                compras.querySelectorAll("label")[0].innerHTML="<b>Productos en el carrito: </b>"+data.cart.cart
+                compras.querySelectorAll("label")[1].innerHTML="<b>Productos comprados: </b>"+data.sale.sale
+
+            })
+            .catch(error => console.log(error))
+        }
+        obtenerProducto()
+     </script>
      <script src="./buscar.js"></script>
     </body>
 </html>

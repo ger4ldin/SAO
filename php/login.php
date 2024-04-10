@@ -26,7 +26,7 @@ if (!$respuesta) {
                 localStorage.setItem('sesion', 1)
                 localStorage.setItem('iduser', $id)
                 localStorage.setItem('is_user', false)
-                window.location.href='http://localhost/SAO/html/principalAdmin.html'
+                window.location.href='../html/principalAdmin.html'
             </script>";
             exit;
         } else {
@@ -34,7 +34,7 @@ if (!$respuesta) {
             localStorage.setItem('sesion', 1)
             localStorage.setItem('iduser', $id)
             localStorage.setItem('is_user', true)
-                window.location.href='http://localhost/SAO/html/principalUser.html'
+                window.location.href='../html/principalUser.html'
             </script>";
             exit;
         }

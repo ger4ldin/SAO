@@ -254,7 +254,7 @@
     <script>
         const componenteDetalles = ({imagen,name_product,description,payment_method,payment_status,created_at}) =>{
             return `
-                <div class="col-4"><img src="${imagen}" alt=""></div>
+                <div class="col-4"><img src="../php/products/${imagen}" alt=""></div>
                 <div class="col-8">
                     <h5>${name}</h5>
                     <h6>${description}/h6>

@@ -24,7 +24,6 @@
             </div>
             <div class="d-flex align-items-center d-grid gap-2 align-items-center col-12 col-lg-9 col-md-9"
                 style="grid-template-columns: 95% 1fr;">
-                <!-- Search -->
                 <form class="w-100 me-3" role="search">
                     <div class="input-group ">
                         <span class="input-group-text" id="basic-addon1"
@@ -131,53 +130,8 @@
             </table>
         </div>
     </div>
-    <script>
-        const componenteVentas =(d)=>{
-            return `
-                            <tr>
-                                <td>${d.id}</td>
-                                <td>${d.name_user}</td>
-                                <td>${d.email}</td>
-                                <td><d.img src=${d.imagen} alt="" /</td>
-                                <td>${d.name_product}</td>
-                                <td>${d.category}</td>
-                                <td>${d.payment_method}</td>
-                                <td>${d.payment_status}</td>
-                                <td>${d.quantity}</td>
-                                <td>${d.price}</td>
-                                <td>${d.quantity * d.price}</td>  
-                                <td><a href="./detalles.html?id=${d.id}" style="text-decoration: none;">
-                                    <span><button class="btn btn-info text-light">Detalles</button></span>
-                                    </a>
-                                </td>
-                                </tr>
-            `
-        }
-        const traerVentas = async () => {
-            const data = new FormData()
-            console.log(sessionStorage.getItem("iduser"))
-            data.append("id_user", localStorage.getItem("iduser"))
-            await fetch("../php/sales/getAllSales.php", {
-               method: 'POST',
-               body: data
-            })
-               .then(response => response.json())
-               .then(response => {
-                  total = 0
-                  console.log(response.data)
-                  response.data.map(r => {
-                     document.getElementById("ventas").innerHTML += componenteVentas(r)
-                     //total += r.price * r.quantity
-                  });
-                  //document.getElementById("total").innerHTML = `$ ${total} MXN`
-                  console.log(response.data)
-               })
-               .catch(e => console.log(e))
-         }
-         traerVentas()
-  
-    </script>
-    <script src="./buscar.js"></script>
+    <script src="./script/ventas.js"></script>
+    <script src="./script/buscar.js"></script>
 </body>
 
 </html>

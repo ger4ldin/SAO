@@ -44,3 +44,4 @@ if (!$respuesta)  die("error al insertar");
         localStorage.setItem('is_user', true)
         window.location.href='../html/principalUser.html'
         </script>";
+?>

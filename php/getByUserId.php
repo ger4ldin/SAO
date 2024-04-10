@@ -20,3 +20,4 @@ class GetByUserId{
         return $json;
     }
 }
+?>

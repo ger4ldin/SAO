@@ -93,3 +93,4 @@ class getAll
         return $json;
     }
 }
+?>

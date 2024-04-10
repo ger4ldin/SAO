@@ -24,7 +24,6 @@
             </div>
             <div class="d-flex align-items-center d-grid gap-2 align-items-center col-12 col-lg-9 col-md-9"
                 style="grid-template-columns: 95% 1fr;">
-                <!-- Search -->
                 <form class="w-100 me-3" role="search">
                     <div class="input-group ">
                         <span class="input-group-text" id="basic-addon1"
@@ -122,44 +121,8 @@
             </tbody>
         </table>
     </div>
-    <script>
-        const componenteUsuarios = ({id, name, lastnameF, lastnameM, email}) =>{
-            return `
-            <tbody>
-                <tr class="">
-                    <td>${id}</td>
-                    <td>${name}</td>
-                    <td>${lastnameF} ${lastnameM}</td>
-                    <td>${email}</td>
-                    <td><button class="btn btn-primary">Editar</button>
-                        <button class="btn btn-danger">Eliminar</button>
-                    </td>
-                </tr>
-                
-            </tbody>
-            `
-        }
-        const traerUsuarios = async () => {
-            const data = new FormData()
-            console.log(sessionStorage.getItem("iduser"))
-            data.append("id_user", localStorage.getItem("iduser"))
-            await fetch("../php/users/getAll.php", {
-               method: 'POST',
-               body: data
-            })
-               .then(response => response.json())
-               .then(response => {
-                  console.log(response.data)
-                  response.data.map(r => {
-                     document.getElementById("users").innerHTML += componenteUsuarios(r)
-                  });
-                  console.log(response.data)
-               })
-               .catch(e => console.log(e))
-         }
-         traerUsuarios();
-    </script>
-    <script src="./buscar.js"></script>
+    <script src="./script/usuarios.js"></script>
+    <script src="./script/buscar.js"></script>
 </body>
 
 </html>

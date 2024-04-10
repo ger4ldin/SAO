@@ -23,7 +23,6 @@
          </div>
          <div class="d-flex align-items-center d-grid gap-2 align-items-center col-12 col-lg-9 col-md-9"
             style="grid-template-columns: 95% 1fr;">
-            <!-- Search -->
             <form class="w-100 me-3" role="search">
                <div class="input-group ">
                   <span class="input-group-text" id="basic-addon1" style="background-color: #fe6347;color: white;">
@@ -138,79 +137,14 @@
 
    <div class="miniImagenDeFondo container-fluid mb-5"></div>
 
-   <!--<div class="container-fluid mb-5">
-        <h3 class="text-center">Marcas disponibles</h3>
-        <div class="row" style="max-width:600px;width: 90%;margin: 0 auto;">
-            <div class="shadow-sm p-3 col-3 col-lg-3 col-md-3">
-                <img src="../src/img/marcas/empson.png" alt="marca" class="img-fluid" style="object-fit: contain;">
-            </div>
-            <div class="shadow-sm p-3 col-3 col-lg-3 col-md-3">
-                <img src="../src/img/marcas/gateway.jpg" alt="marca" class="img-fluid" style="object-fit: contain;">
-            </div>
-            <div class="shadow-sm p-3 col-3 col-lg-3 col-md-3">
-                <img src="../src/img/marcas/huawei.png" alt="marca" class="img-fluid" style="object-fit: contain;">
-            </div>
-            <div class="shadow-sm p-3 col-3 col-lg-3 col-md-3">
-                <img src="../src/img/marcas/samsung.png" alt="marca" class="img-fluid" style="object-fit: contain;">
-            </div>
-        </div>
-    </div>-->
-
    <div class="container-fluid mb-5">
       <h3>Lo mas vendido</h3>
       <div class="row" id="productos">
       </div>
    </div>
 
-   <script>
-      const componenteDelProducto = ({ id, name, price, imagen }) => {
-         return `
-                 <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
-                    <img src="../php/products/${imagen}" alt="../php/products/${imagen}" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;"
-                       onClick="window.location.href='./verProductoAdmin.html?id=${id}'" style="cursor: pointer;"
-                    >
-                    <p class="mb-0">${name}</p>
-                    <span style="color: #fe6347;">$ ${price} MXN</span><br>
-                    <form data-id=${id}>
-                       <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button>
-                    </form>
-                 </div>
-           `
-      }
-      document.addEventListener("submit", async e => {
-         e.preventDefault();
-         let data = new FormData()
-         data.append("id_user", localStorage.getItem("iduser"))
-         data.append("id_product", e.target.dataset.id)
-         await fetch("../php/cart/add.php", {
-            method: 'POST',
-            body: data
-         })
-            .then(res => res.json())
-            .then(json => {
-               alert(json.data)
-            })
-            .catch(err => console.log(err))
-      })
-      const traerporcategoria = async () => {
-         let search = window.location.search
-         if (search.length < 1) {
-            search = "?category=0"
-         }
-         await fetch("../php/products/getProductsByCategory.php" + search)
-            .then(response => response.json())
-            .then(response => {
-               console.log(response)
-               response.data.map(r => {
-                  document.getElementById("productos").innerHTML += componenteDelProducto(r)
-               });
-               console.log(response.data)
-            })
-            .catch(e => console.log(e))
-      }
-      traerporcategoria()
-   </script>
-   <script src="./buscar.js"></script>
+   <script src="./script/principalAdmin.js"></script>
+   <script src="./script/buscar.js"></script>
 </body>
 
 </html>

@@ -7,7 +7,6 @@ if(!isset($_POST['contrasena'])) die("Error a recibir password");
 
 $correo = $_POST['correo'];
 $contrasena = $_POST['contrasena'];
-// $contrasena = password_hash($contrasena, PASSWORD_DEFAULT);
 
 $entrar = "SELECT id,email FROM user WHERE email='$correo' AND password='$contrasena'";
 $respuesta = mysqli_query($con, $entrar);

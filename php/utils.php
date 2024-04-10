@@ -7,4 +7,3 @@ function response($boolean, $data)
     ]));
 }
 
-/*sdfbhfgbh*/

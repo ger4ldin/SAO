@@ -30,18 +30,17 @@ $respuesta = mysqli_query($con, $insertar);
 $sentenciaSesion = "SELECT id,id_user FROM user WHERE email='$correo' and password='$contrasena'";
 $resUser=mysqli_query($con,$sentenciaSesion);
 
+$id=1;
 if($resUser){
     while ($row = mysqli_fetch_assoc($resUser)) {
         $id = $row['id'];
-        $id_user = $row['id_user'];
     }
 }
 
 if (!$respuesta)  die("error al insertar");
     echo "<script>
-        sessionStorage.setItem('sesion', 1)
-        sessionStorage.setItem('iduser', $id)
-        sessionStorage.setItem('is_user', true)
-        window.location.href='http://localhost/SAO/html/index.html'
+        localStorage.setItem('sesion', 1)
+        localStorage.setItem('iduser', $id)
+        localStorage.setItem('is_user', true)
+        window.location.href='http://localhost/SAO/html/principalUser.html'
         </script>";
-?>

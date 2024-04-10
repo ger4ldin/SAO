@@ -51,9 +51,34 @@ $updateUser = "UPDATE user SET id_address = $idAddress WHERE id = $id_user";
 $response=mysqli_query($con,$updateUser);
 if(!$response) response(0,"Hubo un error al actualizar la direccion del usuario");
 
+$mensajes = array();
+
 $json= GetByUserId::getCartByUserId($id_user);
 foreach($json as $cartRow){
-    $insertPayment = "INSERT INTO payment (id_method, id_status) VALUES ('$inputBuyPM', '1')";
+    $id_product=$cartRow['id_product'];
+    $quantity=$cartRow['quantity'];
+    $price=$cartRow['price'];
+    $total=$quantity*$price;
+
+    $sentence = "SELECT stock,name FROM product WHERE id=$id_product";
+    $response=mysqli_query($con,$sentence);
+    $stockByProducts = 1;
+    $nameProduct = "";
+    while ($row = mysqli_fetch_assoc($response)) { 
+        $stockByProducts = $row['stock']; 
+        $nameProduct = $row['name']; 
+    }
+
+    $newStock= $stockByProducts-$quantity;
+    if($newStock < 0){
+        response(0,"No hay productos disponibles para el producto: $nameProduct");
+    }
+
+    $updateStock = "UPDATE product SET stock=$newStock WHERE id=$id_product";
+    $response=mysqli_query($con,$updateStock);
+    if(!$response) response(0,"Hubo un error al actualizar el stock");
+
+    $insertPayment = "INSERT INTO payment (id_method, id_status) VALUES ('$inputBuyPM', '3')";
     $response=mysqli_query($con,$insertPayment);
     if(!$response) response(0,"Hubo un error al insertar el methodo de pago");
 
@@ -62,18 +87,13 @@ foreach($json as $cartRow){
     $idPayment = 1;
     while ($row = mysqli_fetch_assoc($response)) { $idPayment = $row['id']; }
 
-    $insertHistoryProcess ="INSERT INTO history_process (id_process) VALUES ('1')";
+    $insertHistoryProcess ="INSERT INTO history_process (id_process) VALUES ('2')";
     $response=mysqli_query($con,$insertHistoryProcess);
     if(!$response) response(0,"Hubo un error al insertar en el historial de pago");
     $searchHistoryProcess = "SELECT id FROM history_process ORDER BY id DESC LIMIT 1";
     $response=mysqli_query($con,$searchHistoryProcess);
     $idHistoryProcess = 1;
     while ($row = mysqli_fetch_assoc($response)) { $idHistoryProcess = $row['id']; }
-
-    $id_product=$cartRow['id_product'];
-    $quantity=$cartRow['quantity'];
-    $price=$cartRow['price'];
-    $total=$quantity*$price;
 
     $insertSale = "INSERT INTO sale (id_user, id_product, id_payment, id_process, total, quantity) VALUES ('$id_user', '$id_product', '$idPayment', '$idHistoryProcess', '$total', '$quantity')";
     $response=mysqli_query($con,$insertSale);

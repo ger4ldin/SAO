@@ -29,4 +29,3 @@ if($resUser){
 } else {
     die(json_encode(["success" => false,"data" => "Error del server"]));
 }
-/*asdgdf*/

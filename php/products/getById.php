@@ -21,4 +21,3 @@ while ($row = mysqli_fetch_assoc($resGetProducts)) {
 response(1,$json);
 
 
-/*nhggdhn*/

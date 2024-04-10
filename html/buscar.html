@@ -9,7 +9,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
         </script>
     <link rel="stylesheet" href="../src/css/style.css">
-    <title>Administradores</title>
+    <title>Cuenta administrador</title>
 </head>
 
 <body>
@@ -83,96 +83,55 @@
             </div>
         </div>
     </header>
-    <div class="container mt-5 mb-2" style="cursor: pointer;">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
-                <li class="breadcrumb-item">
-                    <h6 class="link-body-emphasis"><svg stroke="currentColor" fill="currentColor" stroke-width="0"
-                            version="1.2" baseProfile="tiny" viewBox="0 0 24 24" height="1em" width="1em"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M22.262 10.468c-3.39-2.854-9.546-8.171-9.607-8.225l-.655-.563-.652.563c-.062.053-6.221 5.368-9.66 8.248-.438.394-.688.945-.688 1.509 0 1.104.896 2 2 2h1v6c0 1.104.896 2 2 2h12c1.104 0 2-.896 2-2v-6h1c1.104 0 2-.896 2-2 0-.598-.275-1.161-.738-1.532zm-8.262 9.532h-4v-5h4v5zm4-8l.002 8h-3.002v-6h-6v6h-3v-8h-3.001c2.765-2.312 7.315-6.227 9.001-7.68 1.686 1.453 6.234 5.367 9 7.681l-3-.001z">
-                            </path>
-                        </svg><span class="visually-hidden">Home</span></h6>
-                </li>
-                <li class="breadcrumb-item"><span class="link-body-emphasis fw-semibold text-decoration-none"
-                        href="#">Admin</span></li>
-                <li class="breadcrumb-item active" aria-current="page">Administradores</li>
-            </ol>
-        </nav>
-    </div>
-    <div class="container mb-5">
-        <div class="container-fluid mt-5 row justify-content-end"><button class="btn btn-primary col py-2"
-                style="max-width: 250px;">Agregar Administrador</button></div>
-        <div class="row">
-            <div class="col-12 mb-2">
-                <h3>Administradores</h3>
-            </div>
+    <div class="container mt-5">
+        <h4>Resultados:</h4>
+        <div class="container row" id="resultados">
         </div>
-        <table class="table table-striped shadow-sm" style="background: red;">
-            <thead>
-                <tr class="">
-                    <th class="py-3">#</th>
-                    <th class="py-3">Nombre</th>
-                    <th class="py-3">apellidos</th>
-                    <th class="py-3">correo</th>
-                    <th class="py-3"></th>
-                </tr>
-            </thead>
-            <tbody id="admins">
-                
-            </tbody>
-        </table>
     </div>
+
     <script>
-        const componenteAdmins = ({id, name, lastnameF, lastnameM, email}) =>{
+
+        const componenteDelProducto = ({ id, name, price, imagen }) => {
             return `
-
-                <tr class="">
-                <td>${id}</td>
-                <td>${name}</td>
-                <td>${lastnameF} ${lastnameM}</td>
-                <td>${email}</td>
-                <td><a href="./admins.html?id=${id}" style="text-decoration: none;">
-                    <button class="btn btn-primary">Editar</button></a>
-                    <button class="btn btn-danger" onClick="eliminar('${id}','${name}')">Eliminar</button></td>
-                </tr>
-            `
+              <div class="shadow-sm p-4 col-6 col-lg-3 col-md-4">
+                 <img src="../php/products/${imagen}" alt="marca" class="img-fluid" style="object-fit: contain;height: 200px;margin: 0 auto;display: block;">
+                 <p class="mb-0">${name}</p>
+                 <span style="color: #fe6347;">$ ${price} MXN</span><br>
+                 <form data-id=${id}>
+                    <button class="btn btn-primary" name="btnAccion" value="Agregar" type="submit">Agregar al carrito</button>
+                 </form>
+              </div>
+        `
         }
-        const eliminar = async (id, name) => {
-            if (confirm("¿Esta seguro? de eliminar: " + name))
-               await fetch("../php/products/deleteAdmin.php?id_product=" + id)
-                  .then(res => res.json())
-                  .then(data => {
-                     console.log(data)
-                     alert(data.data)
-                     if (data.success) window.location.reload()
-                  })
-                  .catch(err => console.log(err))
-         }
-
-        const traerAdmins = async () => {
-            const data = new FormData()
-            console.log(sessionStorage.getItem("iduser"))
+        document.addEventListener("submit", async e => {
+            e.preventDefault();
+            let data = new FormData()
             data.append("id_user", localStorage.getItem("iduser"))
-            await fetch("../php/users/getAdmins.php", {
-               method: 'POST',
-               body: data
+            data.append("id_product", e.target.dataset.id)
+            await fetch("../php/cart/add.php", {
+                method: 'POST',
+                body: data
             })
-               .then(response => response.json())
-               .then(response => {
-                  console.log(response.data)
-                  response.data.map(r => {
-                     document.getElementById("admins").innerHTML += componenteAdmins(r)
-                  });
-                  console.log(response.data)
-               })
-               .catch(e => console.log(e))
-         }
-
-
-         traerAdmins();
-
+                .then(res => res.json())
+                .then(json => {
+                    alert(json.data)
+                    console.log(json)
+                })
+                .catch(err => console.log(err))
+        })
+        const traerporcategoria = async () => {
+            await fetch("../php/products/search.php?search="+window.location.href.split("=")[1],)
+                .then(response => response.json())
+                .then(response => {
+                    console.log(response)
+                    response.data.map(r => {
+                        document.getElementById("resultados").innerHTML += componenteDelProducto(r)
+                    });
+                    console.log(response.data)
+                })
+                .catch(e => console.log(e))
+        }
+        traerporcategoria()
     </script>
     <script src="./buscar.js"></script>
 </body>

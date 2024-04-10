@@ -16,7 +16,7 @@
     <header class="py-3 border-bottom">
         <div class="container-fluid row align-items-center">
             <div class="dropdown col-12 col-lg-3 col-md-3">
-                <a href="../html/index.html"
+                <a href="#"
                     class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
                     <img src="../src/img/wallpaper/logo.png" alt="logo-Sao" class="d-block " width="100" height="40"
                         style="margin: 0 auto;">
@@ -236,13 +236,14 @@
             })
             .then(response => response.json())
             .then(res =>{
+                console.log(res)
                 if(res.success){
                     componenteDelProducto(res.data)
                 } else{
                     alert("erorr")
                     console.log(res)
                     console.log(data)
-                }
+                } 
                 // code
             })
             .catch(error => console.log(error));
@@ -289,6 +290,7 @@
               .then(json => {
                  if(json.success) {
                     alert(json.data)
+                    window.location.href = "./pedidos.html"
                     return
                  }
               })
@@ -303,6 +305,7 @@
         traerProductosDelCarrito();
 
     </script>
+    <script src="./buscar.js"></script>
 </body>
 
 </html>

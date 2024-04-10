@@ -16,4 +16,3 @@ while ($row = mysqli_fetch_assoc($response)) {
 }
 response(1,$json);
 
-/*fsgngh*/

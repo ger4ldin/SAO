@@ -27,7 +27,7 @@ $response = mysqli_query($con, $select);
 $idProcessActual=0;
 while ($row = mysqli_fetch_assoc($response)) { $idProcessActual = $row['id_process']; }
 
-if($idProcessActual==6) response(0, "El proceso ya esta finalizado");
+if($idProcessActual==6) response(1, "El proceso ya esta finalizado");
 if($idProcessActual==1) {
     $select = "SELECT * FROM payment WHERE id=$idPayment";
     $response = mysqli_query($con, $select);

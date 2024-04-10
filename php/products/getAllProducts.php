@@ -21,7 +21,6 @@ response(
     $json
 );
 
-/* dghngh*/
 
 
 

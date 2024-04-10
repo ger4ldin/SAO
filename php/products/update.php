@@ -65,7 +65,10 @@ if(!$booleanImage){
         if(file_exists($imagen)) unlink($imagen);
     }
 }
+// echo $imagen;
+// die("");
 
+$addProduct = "INSERT INTO product (id_category, id_brand, name, imagen, description, specifications, dimensions, stock, price, discount) VALUES ('$id_category', '$id_brand', '$name', '$imagen', '$description', '$specifications', '$dimensions', '$stock', '$price', '0')";
 $addProduct = "UPDATE product SET 
         id_category='$id_category', 
         id_brand='$id_brand', 
@@ -81,4 +84,7 @@ $addProduct = "UPDATE product SET
 ";
 $resProduct=mysqli_query($con,$addProduct);
 if(!$resProduct) response(0, "Hubo un error al insertar en el producto" );
-response(1, "Producto Actualizado");
+response(1, "Producto Actualizado");
+
+
+

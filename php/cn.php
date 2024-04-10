@@ -5,8 +5,3 @@
         die("Coneccion Fallida: " . mysqli_connect_error());
     }
 
-
-
-
-
-/*sdavdf*/

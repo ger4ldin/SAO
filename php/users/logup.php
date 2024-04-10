@@ -43,4 +43,3 @@ if($resUser){
             "is_user" => ($id_user==="3")
         ]));
 }
-/*afkgdfhjk*/

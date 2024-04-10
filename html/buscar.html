@@ -118,6 +118,9 @@
                 .then(json => {
                     alert(json.data)
                     console.log(json)
+                    if(!json.success){
+                        window.location.href = "./registro.html"
+                    }
                 })
                 .catch(err => console.log(err))
         })
